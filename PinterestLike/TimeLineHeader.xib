@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TimeLineHeader" id="guh-n3-Uu0" customClass="HeaderReusableView" customModule="PinterestLike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-tI-I49">
+                    <rect key="frame" x="-5" y="96" width="367" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="q4K-Zu-4cT"/>
+                    </constraints>
+                    <segments>
+                        <segment title="First"/>
+                        <segment title="Second"/>
+                    </segments>
+                </segmentedControl>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1lo-DA-CEY">
+                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                    <color key="backgroundColor" red="0.45404888389999998" green="0.97334511629999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="ZrW-cV-2yS"/>
+                        <constraint firstAttribute="width" secondItem="1lo-DA-CEY" secondAttribute="height" multiplier="1:1" id="nh6-Mc-eQF"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bq-um-XjZ">
+                    <rect key="frame" x="96" y="8" width="253" height="80"/>
+                    <color key="backgroundColor" red="0.45404888389999998" green="0.97334511629999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="JPm-tI-I49" secondAttribute="bottom" constant="1" id="6rN-Cx-ToP"/>
+                <constraint firstItem="4Bq-um-XjZ" firstAttribute="top" secondItem="guh-n3-Uu0" secondAttribute="top" constant="8" id="JTV-6G-4g7"/>
+                <constraint firstItem="4Bq-um-XjZ" firstAttribute="top" secondItem="1lo-DA-CEY" secondAttribute="top" id="Uux-aO-llZ"/>
+                <constraint firstItem="4Bq-um-XjZ" firstAttribute="leading" secondItem="1lo-DA-CEY" secondAttribute="trailing" constant="8" id="VA9-n8-ieT"/>
+                <constraint firstAttribute="trailing" secondItem="4Bq-um-XjZ" secondAttribute="trailing" constant="8" id="aly-ft-C8L"/>
+                <constraint firstItem="JPm-tI-I49" firstAttribute="top" secondItem="4Bq-um-XjZ" secondAttribute="bottom" constant="10" id="cZF-yU-ctV"/>
+                <constraint firstItem="1lo-DA-CEY" firstAttribute="leading" secondItem="guh-n3-Uu0" secondAttribute="leading" constant="8" id="gpa-iu-Cm7"/>
+                <constraint firstItem="JPm-tI-I49" firstAttribute="top" secondItem="1lo-DA-CEY" secondAttribute="bottom" constant="10" id="ijO-OJ-oX7"/>
+                <constraint firstItem="4Bq-um-XjZ" firstAttribute="leading" secondItem="1lo-DA-CEY" secondAttribute="trailing" constant="8" id="jsz-v2-su7"/>
+                <constraint firstItem="JPm-tI-I49" firstAttribute="leading" secondItem="guh-n3-Uu0" secondAttribute="leading" constant="-5" id="luz-tg-cQT"/>
+                <constraint firstAttribute="trailing" secondItem="JPm-tI-I49" secondAttribute="trailing" constant="-5" id="pGc-ad-CIh"/>
+                <constraint firstItem="4Bq-um-XjZ" firstAttribute="bottom" secondItem="1lo-DA-CEY" secondAttribute="bottom" id="ppS-aI-C3x"/>
+                <constraint firstItem="1lo-DA-CEY" firstAttribute="top" secondItem="guh-n3-Uu0" secondAttribute="top" constant="8" id="uKK-bx-0qY"/>
+                <constraint firstItem="JPm-tI-I49" firstAttribute="centerX" secondItem="guh-n3-Uu0" secondAttribute="centerX" id="xLg-e8-Yf6"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="cZF-yU-ctV"/>
+                    <exclude reference="ijO-OJ-oX7"/>
+                    <exclude reference="pGc-ad-CIh"/>
+                    <exclude reference="JTV-6G-4g7"/>
+                    <exclude reference="jsz-v2-su7"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="changePostTapBtn" destination="JPm-tI-I49" id="2Bo-VT-vdN"/>
+                <outlet property="userIconIV" destination="1lo-DA-CEY" id="R0d-AC-gwg"/>
+                <outlet property="userNameLabel" destination="4Bq-um-XjZ" id="vW5-E7-Wir"/>
+            </connections>
+            <point key="canvasLocation" x="352.5" y="374.5"/>
+        </collectionReusableView>
+    </objects>
+</document>
