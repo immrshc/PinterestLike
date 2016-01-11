@@ -29,32 +29,41 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPy-7W-k9x">
-                                                    <rect key="frame" x="5" y="104" width="77" height="21"/>
+                                                    <rect key="frame" x="5" y="90" width="77" height="19"/>
                                                     <color key="backgroundColor" red="0.45404888389999998" green="0.97334511629999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IIn-27-Ce1">
-                                                    <rect key="frame" x="5" y="5" width="77" height="94"/>
+                                                    <rect key="frame" x="5" y="5" width="77" height="80"/>
+                                                    <color key="backgroundColor" red="0.45404888389999998" green="0.97334511629999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" priority="250" constant="80" id="VqB-rC-95k"/>
+                                                        <constraint firstAttribute="height" constant="80" id="VqB-rC-95k"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.35992739898989901" green="0.35992739898989901" blue="0.35992739898989901" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="nPy-7W-k9x" secondAttribute="bottom" constant="5" id="33F-6K-gPc"/>
                                             <constraint firstItem="nPy-7W-k9x" firstAttribute="top" secondItem="IIn-27-Ce1" secondAttribute="bottom" constant="5" id="8kp-Iy-IJH"/>
                                             <constraint firstItem="IIn-27-Ce1" firstAttribute="top" secondItem="Z5D-jI-p01" secondAttribute="top" constant="5" id="AAr-VU-czM"/>
                                             <constraint firstItem="nPy-7W-k9x" firstAttribute="top" secondItem="IIn-27-Ce1" secondAttribute="bottom" constant="5" id="N0K-79-gz1"/>
                                             <constraint firstAttribute="trailing" secondItem="nPy-7W-k9x" secondAttribute="trailing" constant="5" id="TGb-Lc-Z07"/>
+                                            <constraint firstAttribute="bottom" secondItem="nPy-7W-k9x" secondAttribute="bottom" priority="250" constant="5" id="aeI-9P-txt"/>
                                             <constraint firstAttribute="trailing" secondItem="IIn-27-Ce1" secondAttribute="trailing" constant="5" id="eHf-SF-Vtt"/>
                                             <constraint firstItem="IIn-27-Ce1" firstAttribute="leading" secondItem="Z5D-jI-p01" secondAttribute="leading" constant="5" id="ooX-08-bvk"/>
                                             <constraint firstItem="nPy-7W-k9x" firstAttribute="leading" secondItem="Z5D-jI-p01" secondAttribute="leading" constant="5" id="syp-4I-wV9"/>
                                         </constraints>
                                         <size key="customSize" width="87" height="130"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="33F-6K-gPc"/>
+                                                <exclude reference="8kp-Iy-IJH"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="imageViewHeightLayoutConstraint" destination="VqB-rC-95k" id="ReB-Hm-u88"/>
                                             <outlet property="postIV" destination="IIn-27-Ce1" id="0pP-6t-5YP"/>

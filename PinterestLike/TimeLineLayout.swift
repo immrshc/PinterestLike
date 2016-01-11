@@ -18,12 +18,35 @@ protocol TimeLineLayoutDelegate {
     
 }
 
+class TimeLineLayoutAttributes: UICollectionViewLayoutAttributes {
+    
+    var photoHeight:CGFloat = 0.0
+    
+    //photoHeightを更新するために以下が必要になる
+    
+    override func copyWithZone(zone: NSZone) -> AnyObject {
+        let copy = super.copyWithZone(zone) as! TimeLineLayoutAttributes
+        copy.photoHeight = photoHeight
+        return copy
+    }
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let attributes = object as? TimeLineLayoutAttributes {
+            if attributes.photoHeight == photoHeight {
+                return super.isEqual(object)
+            }
+        }
+        return false
+    }
+
+}
+
 class TimeLineLayout: UICollectionViewLayout {
     
     var delegate: TimeLineLayoutDelegate!
-    var _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>()
+    var _layoutAttributes = Dictionary<String, TimeLineLayoutAttributes>()
     var numberOfColumns = 2 //列の数
-    var cellPadding:CGFloat = 6.0 //セルの余白
+    var cellPadding:CGFloat = 5.0 //セルの余白
     var contentHeight:CGFloat = 80.0
     var contentWidth:CGFloat {
         let insets = collectionView!.contentInset
@@ -36,17 +59,16 @@ class TimeLineLayout: UICollectionViewLayout {
     override func prepareLayout() {
         super.prepareLayout()
         
-        _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>() // 1
-        
+        print("②番目に実行される")
+        _layoutAttributes = Dictionary<String, TimeLineLayoutAttributes>() // 1
         let path = NSIndexPath(forItem: 0, inSection: 0)
-        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: path)
+        let attributes = TimeLineLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: path)
         
         let headerHeight = CGFloat(130)
         attributes.frame = CGRectMake(0, 0, self.collectionView!.frame.size.width, headerHeight)
         
         let headerKey = layoutKeyForHeaderAtIndexPath(path)
         _layoutAttributes[headerKey] = attributes
-        
         let numberOfSections = self.collectionView!.numberOfSections()
         
         
@@ -69,18 +91,14 @@ class TimeLineLayout: UICollectionViewLayout {
                 let annotationHeight = delegate.collectionView(collectionView!,
                     heightForAnnotationAtIndexPath: indexPath, withWidth: width)
                 let height = cellPadding +  photoHeight + annotationHeight + cellPadding
-                //let height = cellPadding +  height + cellPadding
                 let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
                 let insetFrame = CGRectInset(frame, cellPadding, cellPadding)
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-                attributes.size.width = width
-                //attributes.size.height = height
-                attributes.size.height = photoHeight
+                let attributes = TimeLineLayoutAttributes(forCellWithIndexPath: indexPath)
+                attributes.photoHeight = photoHeight
                 attributes.frame = insetFrame
                 let key = layoutKeyForIndexPath(indexPath)
                 _layoutAttributes[key] = attributes
                 
-                //ここでCGRectGetMaxYを返さないとスクロールできない
                 contentHeight = max(contentHeight, CGRectGetMaxY(frame))
                 yOffset[column] = yOffset[column] + height
                 
@@ -112,11 +130,13 @@ class TimeLineLayout: UICollectionViewLayout {
     // MARK: -
     // MARK: Required methods
     
+    //セルの領域のサイズを返す
     override func collectionViewContentSize() -> CGSize {
-        //return _contentSize
         return CGSize(width: contentWidth, height: contentHeight)
     }
     
+    //ヘッダーのレイアウトの属性を返す
+    //これがないとヘッダー領域が割り当てられないので、ViewControllerでヘッダーが生成されない
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         
         let headerKey = layoutKeyForIndexPath(indexPath)
@@ -140,7 +160,7 @@ class TimeLineLayout: UICollectionViewLayout {
         let keys = dict.allKeys as NSArray
         let matchingKeys = keys.filteredArrayUsingPredicate(predicate)
         
-        return dict.objectsForKeys(matchingKeys, notFoundMarker: NSNull()) as? [UICollectionViewLayoutAttributes]
+        return dict.objectsForKeys(matchingKeys, notFoundMarker: NSNull()) as? [TimeLineLayoutAttributes]
     }
     
 }

@@ -17,8 +17,8 @@ class TimeLineCollectionViewCell: UICollectionViewCell {
     
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
-        if let attributes = TimeLineLayout()._layoutAttributes["0_0"] {
-            imageViewHeightLayoutConstraint.constant = attributes.size.height
+        if let attributes = layoutAttributes as? TimeLineLayoutAttributes {
+            imageViewHeightLayoutConstraint.constant = attributes.photoHeight
         }
     }
     

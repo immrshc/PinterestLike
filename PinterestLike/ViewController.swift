@@ -24,6 +24,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("①番目に実行される")
         //Pinterestのプロトコルを後で実装する
         if let layout = collectionView?.collectionViewLayout as? TimeLineLayout {
             layout.delegate = self
@@ -60,7 +61,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //ヘッダーをXibファイルから生成
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
+        print("④番目に実行される")
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "TimeLineHeader", forIndexPath: indexPath) as! HeaderReusableView
         headerView.userNameLabel.text = "This is test for header."
         return headerView
@@ -70,6 +71,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //アスペクト比に応じた写真の高さを取得して、セルの写真の高さにする
     func collectionView(collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath: NSIndexPath,
         withWidth width: CGFloat) -> CGFloat {
+            print("③番目に実行される")
             let image = postArray[indexPath.row]
             self.postImage = image
             let boundingRect =  CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
@@ -81,13 +83,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     //投稿文の長さに応じて写真以外のセルの高さを調整する
     func collectionView(collectionView: UICollectionView,
         heightForAnnotationAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat {
-            let annotationPadding = CGFloat(4)
-            let favoriteHeaderHeight = CGFloat(17)
-            let font = UIFont(name: "Times New Roman", size: 10)!
+            //Storyboard上で写真の上、下、ラベルの下にそれぞれ余白が5ずつある
+            let annotationPadding = CGFloat(5) * 3
+            //フォントとサイズは、Storyboard上の文字と同じにする
+            let font = UIFont(name: "Times New Roman", size: 17)!
             let rect = NSString(string: "This is test for Cell, ajusting padding.").boundingRectWithSize(CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
             let commentHeight = ceil(rect.height)
-            let height = annotationPadding + favoriteHeaderHeight + commentHeight + annotationPadding
-            //let height = annotationPadding + favoriteHeaderHeight + annotationPadding
+            let height = commentHeight + annotationPadding
             //print(height)
             return height
     }
